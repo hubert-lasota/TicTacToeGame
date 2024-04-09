@@ -12,58 +12,60 @@
   </head>
   <body>
     <main>
+      <!-- Turn idicator-->
       <div class="grid">
-        <div class="turn">
-          <i class="fa-solid fa-x turquoise"></i>
-          <p class="turquoise">Player 1, you're up!</p>
+        <div id="turn" class="turn">
+          <i class="fa-solid fa-x turquoise "></i>
+          <p class="turquoise ">Player 1, youre up!</p>
         </div>
 
         <!-- Dropdown menu -->
-        <div class="menu" data-id="menu">
-          <button class="menu-btn" data-id="menu-btn">
+        <div class="menu" id="menu">
+          <button class="menu-btn" id="menu-btn">
             Actions
             <i class="fa-solid fa-chevron-down"></i>
           </button>
-          <div class="items border hidden" data-id="menu-items">
-            <button>Reset</button>
-            <button>New Round</button>
+          <div class="items border hidden" id="menu-items">
+            <button id="reset-btn">Reset</button>
+            <button id="new-round-btn">New Round</button>
           </div>
         </div>
 
         <!--Game board-->
-        <div class="square shadow"></div>
-        <div class="square shadow"></div>
-        <div class="square shadow"></div>
-        <div class="square shadow"></div>
-        <div class="square shadow"></div>
-        <div class="square shadow"></div>
-        <div class="square shadow"></div>
-        <div class="square shadow"></div>
-        <div class="square shadow"></div>
+        <div id="square-1" class="square shadow"></div>
+        <div id="square-2" class="square shadow"></div>
+        <div id="square-3" class="square shadow"></div>
+        <div id="square-4" class="square shadow"></div>
+        <div id="square-5" class="square shadow"></div>
+        <div id="square-6" class="square shadow"></div>
+        <div id="square-7" class="square shadow"></div>
+        <div id="square-8" class="square shadow"></div>
+        <div id="square-9" class="square shadow"></div>
 
         <!-- Scoreboard -->
         <div class="score shadow score-player1">
           <p>Player 1</p>
-          <span data-id="p1-wins">0 Wins</span>
+          <span id="p1-wins">0 Wins</span>
         </div>
         <div class="score shadow score-ties">
           <p>Ties</p>
-          <span data-id="ties">0</span>
+          <span id="ties">0</span>
         </div>
         <div class="score shadow score-player2">
           <p>Player 2</p>
-          <span data-id="p2-wins">0 Wins</span>
+          <span id="p2-wins">0 Wins</span>
         </div>
       </div>
     </main>
     <footer><p>Created By Hubert Lasota</p></footer>
 
     <!-- Modal that opens when game ends -->
-    <div class="modal hidden" data-id="modal">
+    <div id="modal" class="modal hidden" >
       <div class="modal-contents">
-        <p data-id="modal-text">Player 1 wins!</p>
-        <button data-id="modal-btn">Play again</button>
+        <p id="modal-text">Player 1 wins!</p>
+        <button id="modal-btn">Play again</button>
       </div>
     </div>
+    <script src="index.js"></script>
   </body>
 </html>
