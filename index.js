@@ -1,3 +1,4 @@
+"use strict";
 import View from "./view.js";
 import Store from "./store.js";
 
@@ -17,12 +18,11 @@ const players = [
 ];
 
 function init() {
-  const store = new Store(players);
+  const store = new Store("live-storage", players);
   const view = new View();
 
-  view.bindGameResetEvent((event) => {
+  function initView() {
     view.closeAll();
-    store.reset();
     view.clearMoves();
     view.setTurnIndictor(store.game.currentPlayer);
     view.updateScoreboard(
@@ -30,18 +30,23 @@ function init() {
       store.stats.playerWithStats[1].wins,
       store.stats.ties
     );
+    view.initializeMoves(store.game.currentGameMoves);
+  }
+
+  initView();
+
+  window.addEventListener("storage", () => {
+    initView();
+  });
+  
+  view.bindGameResetEvent((event) => {
+    store.reset();
+    initView();
   });
 
   view.bindNewRoundEvent((event) => {
     store.newRound();
-    view.closeAll();
-    view.clearMoves();
-    view.setTurnIndictor(store.game.currentPlayer);
-    view.updateScoreboard(
-      store.stats.playerWithStats[0].wins,
-      store.stats.playerWithStats[1].wins,
-      store.stats.ties
-    );
+    initView();
   });
 
   view.bindPlayerMoveEvent((square) => {
