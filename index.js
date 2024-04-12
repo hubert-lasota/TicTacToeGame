@@ -21,18 +21,31 @@ function init() {
   const view = new View();
 
   view.bindGameResetEvent((event) => {
-    view.closeModal();
+    view.closeAll();
     store.reset();
+    view.clearMoves();
     view.setTurnIndictor(store.game.currentPlayer);
+    view.updateScoreboard(
+      store.stats.playerWithStats[0].wins,
+      store.stats.playerWithStats[1].wins,
+      store.stats.ties
+    );
   });
 
   view.bindNewRoundEvent((event) => {
-    console.log("new round event");
-    console.log(event);
+    store.newRound();
+    view.closeAll();
+    view.clearMoves();
+    view.setTurnIndictor(store.game.currentPlayer);
+    view.updateScoreboard(
+      store.stats.playerWithStats[0].wins,
+      store.stats.playerWithStats[1].wins,
+      store.stats.ties
+    );
   });
 
   view.bindPlayerMoveEvent((square) => {
-    const existingMove = store.game.moves.find(
+    const existingMove = store.game.currentGameMoves.find(
       (move) => move.squareId === square.id
     );
 
@@ -57,8 +70,6 @@ function init() {
 
     view.setTurnIndictor(store.game.currentPlayer);
   });
-
-
 }
 
 window.addEventListener("load", init);
